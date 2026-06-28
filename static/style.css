@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 40px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ─── Title ─── */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+/* ─── Add Task Form ─── */
+.add-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.add-form input {
+    padding: 10px 15px;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.add-form input:focus {
+    border-color: #007bff;
+}
+
+.add-form button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-form button:hover {
+    background-color: #218838;
+}
+
+/* ─── Filter Buttons ─── */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #6c757d;
+    transition: background-color 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #5a6268;
+}
+
+.filter-btn.todo {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.filter-btn.todo:hover {
+    background-color: #e0a800;
+}
+
+.filter-btn.in-progress {
+    background-color: #17a2b8;
+}
+
+.filter-btn.in-progress:hover {
+    background-color: #138496;
+}
+
+.filter-btn.done {
+    background-color: #28a745;
+}
+
+.filter-btn.done:hover {
+    background-color: #218838;
+}
+
+/* ─── Summary ─── */
+.summary {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* ─── Task Card ─── */
+.task-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: box-shadow 0.2s;
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ─── Task Info ─── */
+.task-info {
+    flex: 1;
+}
+
+.task-description {
+    font-size: 16px;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.task-date {
+    font-size: 12px;
+    color: #999;
+}
+
+/* ─── Status Badge ─── */
+.status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.status.todo {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.in-progress {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.status.done {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* ─── Task Actions ─── */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.task-actions a,
+.task-actions button {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-edit     { background-color: #6c757d; }
+.btn-progress { background-color: #17a2b8; }
+.btn-done     { background-color: #28a745; }
+.btn-delete   { background-color: #dc3545; }
+
+.btn-edit:hover     { background-color: #5a6268; }
+.btn-progress:hover { background-color: #138496; }
+.btn-done:hover     { background-color: #218838; }
+.btn-delete:hover   { background-color: #c82333; }
+
+/* ─── Edit Form ─── */
+.edit-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+}
+
+.edit-form input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+}
+
+.edit-form input:focus {
+    border-color: #007bff;
+}
+
+.btn-save {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    padding: 6px 12px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+/* ─── Hidden Class ─── */
+.hidden {
+    display: none;
+}
+
+/* ─── No Tasks Message ─── */
+.no-tasks {
+    text-align: center;
+    color: #999;
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+
+/* ─── Footer ─── */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+    padding: 30px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #28a745;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #0056b3;
+}

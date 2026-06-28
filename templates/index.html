@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='profile.jpg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1> Task Tracker</h1>
+
+        <!-- Add Task Form -->
+        <form class="add-form" action="/add" method="POST">
+            <input type="text" name="description" placeholder="Enter a new task..." required>
+            <button type="submit">+ Add Task</button>
+        </form>
+
+        <!-- Filter Buttons -->
+        <div class="filters">
+            <a href="/" class="filter-btn">All</a>
+            <a href="/filter/todo" class="filter-btn todo">Todo</a>
+            <a href="/filter/in-progress" class="filter-btn in-progress">In Progress</a>
+            <a href="/filter/done" class="filter-btn done">Done</a>
+        </div>
+
+        <!-- Summary -->
+        {% if tasks %}
+        <p class="summary">You have {{ tasks|length }} task(s)</p>
+        {% endif %}
+
+        <!-- Task List -->
+        <div class="task-list">
+            {% if tasks %}
+                {% for task in tasks %}
+                <div class="task-card">
+
+                    <div class="task-info">
+                        <span class="status {{ task.status }}">{{ task.status }}</span>
+                        <h3 class="task-description">{{ task.description }}</h3>
+                        <p class="task-date">Created: {{ task.createdAt }}</p>
+                    </div>
+
+                    <!-- Edit Form (hidden by default) -->
+                    <form class="edit-form hidden" action="/update/{{ task.id }}" method="POST">
+                        <input type="text" name="description" value="{{ task.description }}" required>
+                        <button type="submit" class="btn-save">Save</button>
+                        <button type="button" class="btn-cancel" onclick="cancelEdit(this)">Cancel</button>
+                    </form>
+
+                    <div class="task-actions">
+                        <button class="btn-edit" onclick="enableEdit(this)">Edit</button>
+                        <a href="/mark-in-progress/{{ task.id }}" class="btn-progress">In Progress</a>
+                        <a href="/mark-done/{{ task.id }}" class="btn-done">Done</a>
+                        <a href="/delete/{{ task.id }}" class="btn-delete" onclick="return confirmDelete()">Delete</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-tasks">No tasks found. Add one above! 🎉</p>
+            {% endif %}
+        </div>
+        <!-- Footer -->
+       <!-- Footer -->
+        <footer>
+            <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Mohammed Soliman" class="profile-pic">
+            <div class="footer-info">
+                <p class="footer-name">Made by Mohammed Soliman</p>
+                <div class="footer-links">
+                    <a href="https://github.com/MohammedSoliman10" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/mohammed-soliman-3a6651304" target="_blank">LinkedIn</a>
+                    <a href="mailto:mohammedsolly4@gmail.com">Email</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
+</html>
