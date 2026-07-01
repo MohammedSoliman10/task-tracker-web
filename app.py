@@ -209,6 +209,7 @@ def admin():
     db.close()
     return render_template("admin.html", users=users, tasks_count=tasks_count)
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
