@@ -4,6 +4,8 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+
+# ─── Password Validation ───
 def validate_password(password):
     if len(password) < 8:
         return "Password must be at least 8 characters."
@@ -15,14 +17,18 @@ def validate_password(password):
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-fallback-key-change-in-production")
+
 # ─── Flask-Login Setup ───
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
 # ─── Database Setup ───
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DB_PATH = os.path.join(BASE_DIR, "database.db")
+
 def get_db():
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DB_PATH)
     db.row_factory = sqlite3.Row
     return db
 
@@ -48,6 +54,8 @@ def init_db():
     """)
     db.commit()
     db.close()
+
+init_db()
 
 # ─── User Class ───
 class User(UserMixin):
@@ -208,8 +216,6 @@ def admin():
     tasks_count = db.execute("SELECT user_id, COUNT(*) as count FROM tasks GROUP BY user_id").fetchall()
     db.close()
     return render_template("admin.html", users=users, tasks_count=tasks_count)
-
-init_db()
 
 if __name__ == "__main__":
     app.run(debug=True)
