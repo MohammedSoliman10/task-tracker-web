@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='profile.jpg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <div class="container">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <span class="nav-brand"> Task Tracker</span>
+        <div class="nav-right">
+            <span class="nav-user">👋 Hello, {{ current_user.username.split('@')[0] }}!</span>
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </nav>
 
-        <h1> Task Tracker</h1>
+    <div class="container">
 
         <!-- Add Task Form -->
         <form class="add-form" action="/add" method="POST">
@@ -41,7 +50,7 @@
                     <div class="task-info">
                         <span class="status {{ task.status }}">{{ task.status }}</span>
                         <h3 class="task-description">{{ task.description }}</h3>
-                        <p class="task-date">Created: {{ task.createdAt }}</p>
+                        <p class="task-date">Created: {{ task.created_at }}</p>
                     </div>
 
                     <!-- Edit Form (hidden by default) -->
@@ -64,8 +73,8 @@
                 <p class="no-tasks">No tasks found. Add one above! 🎉</p>
             {% endif %}
         </div>
+
         <!-- Footer -->
-       <!-- Footer -->
         <footer>
             <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Mohammed Soliman" class="profile-pic">
             <div class="footer-info">
@@ -77,6 +86,7 @@
                 </div>
             </div>
         </footer>
+
     </div>
 
     <script src="{{ url_for('static', filename='main.js') }}"></script>
